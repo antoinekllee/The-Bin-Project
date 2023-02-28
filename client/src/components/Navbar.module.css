@@ -1,0 +1,63 @@
+.container
+{
+    /* Green nav bar sticks to top of screen */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #4CAF50;
+    overflow: hidden;
+    z-index: 1;
+    /* Vertically align children to center */
+    display: flex;
+    align-items: center;
+}
+
+.binProject
+{
+    /* BinProject text */
+    font-size: 22px;
+    color: white;
+    margin-left: 20px;
+
+    /* Change the font */
+    font-family: 'Roboto', sans-serif;
+}
+
+.username
+{
+    /* Username text */
+    font-size: 22px;
+    color: white;
+    margin-right: 20px;
+    
+    /* Align right */
+    margin-left: auto;
+
+    /* Change the font */
+    font-family: 'Roboto', sans-serif;
+}
+
+.pfp
+{
+    /* Profile picture */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 20px;
+
+    /* Make it white */
+    background-color: white;
+}
+
+.menu
+{
+    /* Profile picture */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 20px;
+
+    /* Make it white */
+    color: white;
+}
