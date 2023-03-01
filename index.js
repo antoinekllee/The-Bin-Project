@@ -5,7 +5,7 @@ const mongoose = require ('mongoose');
 const session = require('express-session');
 const mongoStore = require("connect-mongo"); 
 
-const routes = require ("./routes"); 
+// const routes = require ("./routes"); 
 
 const { PORT=3000, MONGO_URI, SESSION_SECRET } = process.env; // provide default value in case if not available in .env file
 
@@ -23,16 +23,29 @@ app.use(session({
     })
 }));
 
-app.use (routes); 
+// Async app.delete router method which deletes all documents in the wastage collection
+app.delete('/yeet', async (req, res) => 
+{
+    const wastageModel = mongoose.model('wastage', {}, 'wastage');
+
+    // Print how many documents are in the wastage collection
+    const count = await wastageModel.countDocuments({});
+    console.log(count);
+
+    // Print the first document in the wastage collection
+    const first = await wastageModel.findOne({});
+    console.log(first);
+
+    try {
+        const wastage = await wastageModel.deleteMany({});
+        res.status(200).json(wastage);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
 
 mongoose.set('strictQuery', false);
-mongoose.connect (MONGO_URI, () => 
-{
-    console.log ("CONNECTED TO DB"); 
-}); // connect to mongodb instance
-
-const configuration = new Configuration({ apiKey: OPENAI_KEY });
-const openai = new OpenAIApi(configuration);
+mongoose.connect (MONGO_URI); 
 
 app.listen (PORT, () => // fire up express server
 {
